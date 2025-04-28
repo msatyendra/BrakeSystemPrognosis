@@ -24,14 +24,14 @@ The system collects real-time data from multiple sensors, processes it via a mic
 
 ## Folder Structure
 
-- /firmware/
+- /firmware/  
   Embedded C firmware code
 
 - /matlab/  
   Sensor signal simulation scripts (MATLAB) 
   Simulink models for sensor animation (optional)
 
-- /machineLearning/
+- /machineLearning/  
   AI model training scripts and dataset files
   Real-time prediction scripts
 

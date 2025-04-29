@@ -28,7 +28,7 @@ The system collects real-time data from multiple sensors, processes it via a mic
   Embedded C firmware code
 
 - /matlab/  
-  Sensor signal simulation scripts (MATLAB) 
+  Sensor signal simulation scripts (MATLAB)
   Simulink models for sensor animation (optional)
 
 - /machineLearning/  

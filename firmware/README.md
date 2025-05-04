@@ -7,13 +7,18 @@ This directory contains the embedded C firmware developed for the Brake System P
 
 ## 📂 Folder Structure
 
-- **FreeRTOS/** – FreeRTOS kernel files
-- **drivers/** – Drivers for I2C, SPI, ADC, CAN-FD interfaces
-- **tasks/** – FreeRTOS task files for each sensor and CAN transmission
-- **config/** – Configuration files (clock, FreeRTOS, peripheral pin mappings)
-- **project_files/** – Microchip Studio project files
-- **main.c** – Main application file
-- **README.md** – This documentation file
+firmware/eg_1/eg_1
+├── src/
+│ ├── ASF/ # Atmel Software Framework (board and peripheral drivers)
+│ ├── config/ # Configuration files (clock, board, etc.)
+│ ├── FreeRTOS/ # FreeRTOS kernel and porting files
+│ ├── adc_driver.c/h # Driver for ADC sensors (e.g., brake disc temp, pressure)
+│ ├── i2c_driver.c/h # Driver for I2C sensors (e.g., MPU6050, MLX90393)
+│ ├── spi_driver.c/h # Driver for SPI sensors (e.g., MAX31855)
+│ ├── mcan_driver.c/h # CAN-FD driver for data transmission
+│ ├── sensors.c/h # Sensor abstraction layer, integrates all sensors
+│ ├── main.c # Main application logic with FreeRTOS tasks
+│ └── asf.h # ASF initialization header
 
 ---
 

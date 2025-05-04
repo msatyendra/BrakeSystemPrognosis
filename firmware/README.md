@@ -8,17 +8,27 @@ This directory contains the embedded C firmware developed for the Brake System P
 ## 📂 Folder Structure
 
 firmware/eg_1/eg_1
-├── src/
-│ ├── ASF/ # Atmel Software Framework (board and peripheral drivers)
-│ ├── config/ # Configuration files (clock, board, etc.)
-│ ├── FreeRTOS/ # FreeRTOS kernel and porting files
-│ ├── adc_driver.c/h # Driver for ADC sensors (e.g., brake disc temp, pressure)
-│ ├── i2c_driver.c/h # Driver for I2C sensors (e.g., MPU6050, MLX90393)
-│ ├── spi_driver.c/h # Driver for SPI sensors (e.g., MAX31855)
-│ ├── mcan_driver.c/h # CAN-FD driver for data transmission
-│ ├── sensors.c/h # Sensor abstraction layer, integrates all sensors
-│ ├── main.c # Main application logic with FreeRTOS tasks
-│ └── asf.h # ASF initialization header
+- ├── **src/**
+- │ ├── **ASF/** - Atmel Software Framework (board and peripheral drivers)
+- │ ├── **config/** - Configuration files (clock, board, etc.)
+- │ ├── **FreeRTOS/** - FreeRTOS kernel and porting files
+- │ ├── **adc_driver.c/h** - Driver for ADC sensors (e.g., brake disc temp, pressure)
+- │ ├── **i2c_driver.c/h** - Driver for I2C sensors (e.g., MPU6050, MLX90393)
+- │ ├── **spi_driver.c/h** - Driver for SPI sensors (e.g., MAX31855)
+- │ ├── **mcan_driver.c/h** - CAN-FD driver for data transmission
+- │ ├── **sensors.c/h** - Sensor abstraction layer, integrates all sensors
+- │ ├── **main.c** - Main application logic with FreeRTOS tasks
+- │ └── **asf.h** - ASF initialization header
+
+---
+
+## ▶️ How It Works
+
+1. ASF initializes board and peripherals.
+2. FreeRTOS starts scheduler.
+3. Sensor tasks read data periodically and store them in shared variables.
+4. CAN-FD task reads the shared variables and sends a structured frame to PC.
+5. PC or host computer reads this CAN-FD stream for prediction using an AI model.
 
 ---
 

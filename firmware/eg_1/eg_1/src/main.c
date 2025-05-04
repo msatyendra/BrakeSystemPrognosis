@@ -96,7 +96,7 @@ int main(void)
 	/* Configure FreeRTOS */
 	puts("Configured FreeRTOS.\r");
 	
-	xTaskCreate(vLEDTask, "LED_Task", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+	xTaskCreate(vSENSORTask, "SENSOR_Task", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
 	
 	vTaskStartScheduler();
 	
@@ -152,9 +152,9 @@ volatile size_t xFreeHeapSpace;
 }
 /*-----------------------------------------------------------*/
 
-void vLEDTask(void *pvParameters) {
-	float temprature,pressure,vibration,pad_wear;
-	uint32_t canfd_id;
+void vSENSORTask(void *pvParameters) {
+	float temperature, pressure, vibration, pad_wear;
+	uint32_t canfd_id = 0x7E9;
 	uint8_t can_data[64];
 	while (1)
 	{
@@ -167,5 +167,6 @@ void vLEDTask(void *pvParameters) {
 		memcpy(&can_data[PRES_BASE],&pressure,sizeof(float));
 		memcpy(&can_data[VIBR_BASE],&vibration,sizeof(float));
 		memcpy(&can_data[PADW_BASE],&pad_wear,sizeof(float));
+		mcan_fd_send_standard_message(canfd_id, can_data);
 	}
 }
